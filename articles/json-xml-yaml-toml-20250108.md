@@ -3,12 +3,12 @@ title: "JSON XML YAML TOML を見た目で比較してみる"
 emoji: "📄"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["json", "xml", "yaml", "toml"]
-published: false
+published: true
 ---
 
 ## モチベーション
 
-`JSON`, `XML`, `YAML`, `TOML` について以下ポストが話題になっており、パッとの見た目を比較したいと考えました。
+`JSON`, `XML`, `YAML`, `TOML` について以下ポストが話題になっており、パッと見た目を比較したいと考えました。
 
 https://x.com/yutkat/status/1876160376003522592
 
