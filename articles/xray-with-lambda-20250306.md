@@ -3,7 +3,7 @@ title: "X-Ray で Lambda のパフォーマンス（ボトルネック関数）�
 emoji: "⌛"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AWS", "Lambda", "xray"]
-published: false
+published: true
 ---
 
 ## 概要
