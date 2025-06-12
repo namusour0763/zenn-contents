@@ -3,7 +3,7 @@ title: "Windows で Claude Code はじめてみる"
 emoji: "🔰"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AI", "Claude", "ClaudeCode"]
-published: false
+published: true
 ---
 
 ## はじめに
@@ -14,11 +14,11 @@ Claude Code が Pro プラン（月額 $20）で使えるようになった (202
 
 Windows 環境ではじめる場合のやるべきことリスト（手順）です。
 
+- Claude のアカウント登録
+- Claude Pro プランの登録
 - WSL2 の有効化
 - `node` のインストール
 - `claude-code` のインストール
-- Claude のアカウント登録
-- Claude Pro プランの登録
 - claude コマンドの実行
 
 ### WSL2 の有効化
