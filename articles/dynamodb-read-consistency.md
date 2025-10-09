@@ -43,8 +43,7 @@ https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/HowItWork
 
 ## 対策
 
-- **必要に応じて、強力な整合性のある読み込みを使用する**
-- 読み込み時の整合性が特に重要であれば、RDB の採用を検討する
+**必要に応じて、強力な整合性のある読み込みを使用する**こと。
 
 :::message
 強力な整合性のある読み込みは、結果整合性のある読み込みと比べて倍のコストがかかる。
@@ -58,4 +57,53 @@ response = table.scan(
     FilterExpression=Attr('age').gte(25),
     ConsistentRead=True
 )
+```
+
+## RDB vs DynamoDB
+
+データを扱うアーキテクチャーの観点を整理した。
+
+| 観点             | RDB（Aurora, RDS）     | DynamoDB                       |
+| ---------------- | ---------------------- | ------------------------------ |
+| データ構造       | 明確なスキーマ・関係型 | スキーマレス・柔軟             |
+| クエリ           | 複雑な結合・集計に強い | キーアクセス中心・シンプル     |
+| スケーラビリティ | 垂直スケール中心       | 水平スケール容易               |
+| 一貫性           | 強整合性               | 最終整合性（強整合も選択可）   |
+| コストモデル     | 常時稼働課金           | アクセス課金（オンデマンド可） |
+| 運用             | 管理・調整が必要       | 完全マネージド                 |
+
+| 代表的なユースケース                      | 推奨データストア       |
+| ----------------------------------------- | ---------------------- |
+| ECサイトの注文管理、在庫管理              | **RDB（Aurora, RDS）** |
+| IoTデバイスのメトリクス、ログ、センサー値 | **DynamoDB**           |
+| Webアプリのセッション・ユーザーキャッシュ | **DynamoDB**           |
+| 会計・財務データの保存                    | **RDB**                |
+| 高速なランキング・リアルタイム集計        | **DynamoDB**           |
+
+```mermaid
+flowchart TB
+    Start([データベース選択開始]) --> Q1{アクセスパターンは<br/>Key-Value的?}
+    
+    Q1 -->|YES| Q2{JOINや複雑な<br/>集計が必要?}
+    Q1 -->|NO| RDB1[RDB検討]
+    
+    Q2 -->|YES| RDB2[RDB検討]
+    Q2 -->|NO| Q3{強力な整合性が<br/>必要?}
+    
+    Q3 -->|YES| DYNAMO1[DynamoDB<br/>ConsistentRead=True]
+    Q3 -->|NO| DYNAMO2[DynamoDB<br/>結果整合性でコスト削減]
+    
+    DYNAMO1 --> Q4{トラフィックの<br/>急増が予想される?}
+    DYNAMO2 --> Q4
+    
+    Q4 -->|YES| ADVANTAGE1[DynamoDBの優位性<br/>さらに高い]
+    Q4 -->|NO| ADVANTAGE2[どちらでも可<br/>運用負荷でDynamoDB有利]
+    
+    style Start fill:#e1f5ff
+    style DYNAMO1 fill:#90EE90
+    style DYNAMO2 fill:#90EE90
+    style RDB1 fill:#FFB6C1
+    style RDB2 fill:#FFB6C1
+    style ADVANTAGE1 fill:#FFFFE0
+    style ADVANTAGE2 fill:#FFFFE0
 ```
