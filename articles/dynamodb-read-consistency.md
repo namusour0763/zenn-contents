@@ -98,12 +98,4 @@ flowchart TB
     
     Q4 -->|YES| ADVANTAGE1[DynamoDBの優位性<br/>さらに高い]
     Q4 -->|NO| ADVANTAGE2[どちらでも可<br/>運用負荷でDynamoDB有利]
-    
-    style Start fill:#e1f5ff
-    style DYNAMO1 fill:#90EE90
-    style DYNAMO2 fill:#90EE90
-    style RDB1 fill:#FFB6C1
-    style RDB2 fill:#FFB6C1
-    style ADVANTAGE1 fill:#FFFFE0
-    style ADVANTAGE2 fill:#FFFFE0
 ```
