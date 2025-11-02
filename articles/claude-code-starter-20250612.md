@@ -52,9 +52,9 @@ https://docs.anthropic.com/ja/docs/claude-code/overview
 
 `claude` コマンドを実行し、画面の指示に従ってブラウザからログイン、認証コードをターミナルにコピペします。VS Code を利用してる場合は自動で拡張機能がインストールされます。
 
-### チュートリアル
+### クイックスタート
 
-https://docs.anthropic.com/ja/docs/claude-code/tutorials
+https://docs.claude.com/ja/docs/claude-code/quickstart#npm
 
 意外と簡単なので、ぜひ始めてみましょう！※お試しの人は月額プランであること（デフォルトは年間プラン）をよく確認しましょう！
 
